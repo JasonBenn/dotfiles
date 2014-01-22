@@ -10,6 +10,7 @@ export PATH="~/bin:$HOMEBREW_PATH:/usr/bin:/usr/sbin:/bin:/sbin:/Users/jasonbenn
 export PATH="/Users/jasonbenn/.rbenv/versions/2.0.0-p195/bin:/usr/local/share/npm/bin:/usr/local/share/npm/lib/node_modules:$PATH"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export EDITOR='subl -w'
 
 # Twitter OAuth key and secret for interview app
 export CONSUMER_KEY="SUri5JFD0or4o4g0LgOiA"
