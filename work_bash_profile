@@ -18,7 +18,7 @@ source ~/git-completion.bash
 
 function cd()
 {
- builtin cd "$*" && ls
+ builtin cd "$*" && ls -la
 }
 
 RED="\[\033[0;31m\]"
