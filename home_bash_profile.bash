@@ -14,6 +14,8 @@ export EDITOR='subl -w'
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# --- PS1 ---
+
 c_cyan=`tput setaf 6`
 c_red=`tput setaf 1`
 c_green=`tput setaf 2`
@@ -27,7 +29,7 @@ parse_git_branch ()
   else
     return 0
   fi
-  echo -e $gitver
+  echo -e " $gitver"
 }
 
 branch_color ()
@@ -39,12 +41,12 @@ branch_color ()
   then
     color="${c_green}"
   else
-    color=${c_red}
+    color="${c_red}"
     fi
   else
     return 0
   fi
-  echo -ne $color
+  echo -ne "$color"
 }
 
-PS1='[$(branch_color)$(parse_git_branch)\[${c_sgr0}\]]\[${c_cyan}\]\W\[${c_sgr0}\]: '
+PS1='\W\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]: '
