@@ -12,10 +12,6 @@ export PATH="/Users/jasonbenn/.rbenv/versions/2.0.0-p195/bin:/usr/local/share/np
 export PATH="/usr/local/heroku/bin:$PATH"
 export EDITOR='subl -w'
 
-# Twitter OAuth key and secret for interview app
-export CONSUMER_KEY="SUri5JFD0or4o4g0LgOiA"
-export CONSUMER_SECRET="Yl2ogRFDXbKFXVC6fgQFsJa6aCYBZnVyCnia9o7DRM"
-
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 c_cyan=`tput setaf 6`
