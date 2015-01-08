@@ -1,0 +1,11 @@
+Host dev
+  HostName all001-dev.srv.clinkle.com
+  User ubuntu
+
+Host test
+  HostName all001-test.srv.clinkle.com
+  User ubuntu
+
+Host stage
+  HostName web001-stage.srv.clinkle.com
+  User ubuntu
