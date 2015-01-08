@@ -3,9 +3,8 @@
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias gs='git status'
 alias ls='ls -G'
-function cd()
-{
- builtin cd "$*" && ls -la
+function cd() {
+  builtin cd "$*" && ls -la
 }
 # alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
 
@@ -15,6 +14,21 @@ function cd()
 PATH=$PATH:/usr/local/mysql/bin           # mysql
 PATH=$PATH:/var/lib/mongodb               # mongodb
 PATH=$PATH:/Users/jasonbenn/arcanist/bin  # arcanist
+
+
+# --- UTILITY FUNCTIONS ---
+
+function cd-fixture() {
+  echo "In member..."
+  builtin cd /Users/jasoncbenn/code/clinkle-web/member && bundle exec rake fixture:stop
+  echo "In support..."
+  builtin cd /Users/jasoncbenn/code/clinkle-web/support && bundle exec rake fixture:stop
+  echo "In treatsapp..."
+  builtin cd /Users/jasoncbenn/code/clinkle-web/treatsapp && bundle exec rake fixture:stop
+  echo "In $*..."
+  builtin cd "/Users/jasoncbenn/code/clinkle-web/$*" && bundle exec rake fixture:start
+}
+
 
 # --- THIRD PARTY ---
 
