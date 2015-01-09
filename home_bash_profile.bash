@@ -1,9 +1,34 @@
-source "/usr/local/etc/bash_completion.d/git-completion.bash"
-source "/usr/local/etc/bash_completion.d/git-prompt.sh"
+# --- UTILITY FUNCTIONS ---
+
+function draft(){
+  cp -r /Users/jasonbenn/code/bootstrap-drafter $1
+  cd $1
+  open draft.html
+  subl .
+  bundle exec guard
+}
+
+function gac { 
+  git add --all .
+  local commitmessage
+  if [ "" = "$1" ]; then 
+    echo -n 'Commit message: '
+    commitmessage="$(ruby -e "puts gets")"
+    git commit -m "$commitmessage"
+  else
+    git commit -m "$1"
+  fi
+}
+
+
+# --- ALIASES ---
 
 alias gs="git status"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
+
+
+# --- PATH ---
 
 export HOMEBREW_PATH="/usr/local/bin:/usr/local/sbin"
 export PATH="~/bin:$HOMEBREW_PATH:/usr/bin:/usr/sbin:/bin:/sbin:/Users/jasonbenn/.rbenv/versions/"
@@ -12,7 +37,12 @@ export PATH="/Users/jasonbenn/.rbenv/versions/2.0.0-p195/bin:/usr/local/share/np
 export PATH="/usr/local/heroku/bin:$PATH"
 export EDITOR='subl -w'
 
+# --- THIRD PARTY ---
+
+source "/usr/local/etc/bash_completion.d/git-completion.bash"
+source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 
 # --- PS1 ---
 
