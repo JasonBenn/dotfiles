@@ -3,9 +3,7 @@
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias gs='git status'
 alias ls='ls -G'
-function cd() {
-  builtin cd "$*" && ls -la
-}
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 # alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
 
 
@@ -29,19 +27,26 @@ function cd-fixture() {
   builtin cd "/Users/jasoncbenn/code/clinkle-web/$*" && bundle exec rake fixture:start
 }
 
+function cd() {
+  builtin cd "$*" && ls -la
+}
+
 
 # --- THIRD PARTY ---
 
 source /Users/jasoncbenn/code/dotfiles/git-completion.bash
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+source ~/.profile
 
 
-# --- PS1 ---
+# --- APPEARANCE ---
 
 c_cyan=`tput setaf 6`
 c_red=`tput setaf 1`
 c_green=`tput setaf 2`
 c_sgr0=`tput sgr0`
+
+# color of files displayed by the ls command
+export LSCOLORS=ExFxCxDxBxegedabagacad
 
 parse_git_branch ()
 {
