@@ -8,8 +8,12 @@ function draft(){
   bundle exec guard
 }
 
-function gac { 
+function ga {
   git add --all .
+}
+
+function gac { 
+  ga
   local commitmessage
   if [ "" = "$1" ]; then 
     echo -n 'Commit message: '
@@ -20,13 +24,18 @@ function gac {
   fi
 }
 
+function gacp { 
+  gac
+  git push
+}
+
 
 # --- ALIASES ---
 
 alias gs="git status"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
-
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # --- PATH ---
 
