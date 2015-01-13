@@ -4,7 +4,7 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias gs='git status'
 alias ls='ls -G'
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
-# alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
+alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
 
 
 # --- PATH ---
@@ -29,6 +29,17 @@ function cd-fixture() {
 
 function cd() {
   builtin cd "$*" && ls -la
+}
+
+function deploy() {
+  tier=$1
+  current_branch="$(git rev-parse --abbrev-ref HEAD)"
+  git checkout develop
+  git pull --rebase
+  git checkout release/$tier
+  git reset --hard develop
+  git push # will fail if force push is necessary
+  git checkout $current_branch
 }
 
 
@@ -76,4 +87,4 @@ branch_color ()
   echo -ne "$color"
 }
 
-PS1='\W\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]: '
+PS1='\[${c_cyan}\]\W\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]: '
