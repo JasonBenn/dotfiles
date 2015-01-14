@@ -29,6 +29,20 @@ function gacp {
   git push
 }
 
+function gamend {
+  ga
+  git commit --amend --no-edit
+}
+
+function gamendp {
+  gamend
+  git push
+}
+
+function gamendpf {
+  gamend
+  git push -f
+}
 
 # --- ALIASES ---
 
