@@ -10,3 +10,6 @@ sudo ln -sf /Users/jasoncbenn/code/dotfiles/sublime_keymap /Users/jasoncbenn/Lib
 
 # install work ssh_config
 sudo ln -sf /Users/jasoncbenn/code/dotfiles/ssh_config /Users/jasoncbenn/.ssh/config
+
+# install ~/.gemrc
+ln -sf /Users/jasoncbenn/code/dotfiles/gemrc /Users/jasoncbenn/.gemrc
