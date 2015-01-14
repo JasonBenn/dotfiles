@@ -42,6 +42,26 @@ function deploy() {
   git checkout $current_branch
 }
 
+function ga {
+  git add --all .
+}
+
+function gac { 
+  ga
+  local commitmessage
+  if [ "" = "$1" ]; then 
+    echo -n 'Commit message: '
+    commitmessage="$(ruby -e "puts gets")"
+    git commit -m "$commitmessage"
+  else
+    git commit -m "$1"
+  fi
+}
+
+function gacp { 
+  gac
+  git push
+}
 
 # --- THIRD PARTY ---
 
