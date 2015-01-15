@@ -2,10 +2,12 @@
 
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias gs='git status'
-alias ls='ls -G'
+alias ll='ls -laF'
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
-
+function cd() {
+  builtin cd "$*" && ll
+}
 
 # --- PATH ---
 
@@ -25,10 +27,6 @@ function cd-fixture() {
   builtin cd /Users/jasoncbenn/code/clinkle-web/treatsapp && bundle exec rake fixture:stop
   echo "In $*..."
   builtin cd "/Users/jasoncbenn/code/clinkle-web/$*" && bundle exec rake fixture:start
-}
-
-function cd() {
-  builtin cd "$*" && ls -la
 }
 
 function deploy() {
