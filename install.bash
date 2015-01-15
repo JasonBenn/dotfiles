@@ -8,8 +8,9 @@
 sudo ln -sf /Users/jasoncbenn/code/dotfiles/sublime_settings /Users/jasoncbenn/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
 sudo ln -sf /Users/jasoncbenn/code/dotfiles/sublime_keymap /Users/jasoncbenn/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
 
-# install work ssh_config
-sudo ln -sf /Users/jasoncbenn/code/dotfiles/ssh_config /Users/jasoncbenn/.ssh/config
+# install work ssh_configs
+# sudo ln -sf /Users/jasoncbenn/code/dotfiles/ssh_config.oregon /Users/jasoncbenn/.ssh/config
+# sudo ln -sf /Users/jasoncbenn/code/dotfiles/ssh_config.norcal /Users/jasoncbenn/.ssh/config
 
 # install ~/.gemrc
 ln -sf /Users/jasoncbenn/code/dotfiles/gemrc /Users/jasoncbenn/.gemrc
