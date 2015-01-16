@@ -1,14 +1,3 @@
-# --- ALIASES ---
-
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias gs='git status'
-alias ll='ls -laF'
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
-alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
-function cd() {
-  builtin cd "$*" && ll
-}
-
 # --- PATH ---
 
 PATH=$PATH:/usr/local/mysql/bin           # mysql
@@ -16,7 +5,29 @@ PATH=$PATH:/var/lib/mongodb               # mongodb
 PATH=$PATH:/Users/jasonbenn/arcanist/bin  # arcanist
 
 
+# --- ALIASES ---
+
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+alias gs='git status'
+alias ll='ls -laF'
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
+alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
+
+
 # --- UTILITY FUNCTIONS ---
+
+function cd() {
+  builtin cd "$*" && ll
+}
+
+function switch_ssh_config() {
+  if [ $1 == "norcal" ] || [ $1 == "oregon" ]; then 
+    sudo ln -sf /Users/jasoncbenn/code/dotfiles/ssh_config.$1 /Users/jasoncbenn/.ssh/config
+    rm ~/.ssh/known_hosts &>/dev/null
+  else 
+    echo "Invalid input: expecting 'norcal' or 'oregon'."
+  fi
+}
 
 function cd-fixture() {
   echo "In member..."
@@ -65,6 +76,7 @@ function gacp {
 
 source /Users/jasoncbenn/code/dotfiles/git-completion.bash
 source ~/.profile
+source ~/.rvm/scripts/rvm
 
 
 # --- APPEARANCE ---
