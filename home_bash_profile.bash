@@ -46,6 +46,7 @@ function gamendpf {
 
 # --- ALIASES ---
 
+alias ll="ls -laF"
 alias gs="git status"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
