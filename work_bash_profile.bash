@@ -10,8 +10,9 @@ PATH=$PATH:/Users/jasonbenn/arcanist/bin  # arcanist
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias gs='git status'
 alias ll='ls -laF'
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.files-changed "diff-tree --no-commit-id --name-only -r"
 
 
 # --- UTILITY FUNCTIONS ---
