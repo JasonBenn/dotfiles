@@ -6,6 +6,9 @@ Host test
   HostName all001-test.srv.clinkle.com
   User jason
 
+Host deployer
+  Hostname deploy-network.srv.clinkle.com
+  User jason
 
 Host api-daily-dev
   HostName api-daily-dev.srv.clinkle.com
