@@ -68,6 +68,17 @@ function gac {
   fi
 }
 
+function gamend {
+  ga
+  echo -n 'Commit message: '
+  commitmessage="$(ruby -e "puts gets")"
+  if [ "" = "$commitmessage" ]; then
+    git commit --amend --no-edit
+  else
+    git commit --amend -m "$commitmessage"
+  fi
+}
+
 function gacp { 
   gac
   git push

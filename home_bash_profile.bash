@@ -31,7 +31,13 @@ function gacp {
 
 function gamend {
   ga
-  git commit --amend --no-edit
+  echo -n 'Commit message: '
+  commitmessage="$(ruby -e "puts gets")"
+  if [ "" = "$commitmessage" ]; then
+    git commit --amend --no-edit
+  else
+    git commit --amend -m "$commitmessage"
+  fi
 }
 
 function gamendp {
