@@ -48,7 +48,7 @@ function deploy() {
   git pull --rebase
   git checkout release/$tier
   git reset --hard develop
-  git push # will fail if force push is necessary
+  git push -f
   git checkout $current_branch
 }
 
