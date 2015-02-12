@@ -88,7 +88,6 @@ function gacp {
 
 source /Users/jasoncbenn/code/dotfiles/git-completion.bash
 source ~/.profile
-source ~/.rvm/scripts/rvm
 # For `bundle open gemname`
 EDITOR='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
