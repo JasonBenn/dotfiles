@@ -73,6 +73,8 @@ export EDITOR='subl -w'
 source "/usr/local/etc/bash_completion.d/git-completion.bash"
 source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# For `bundle open gemname`
+EDITOR='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 
 # --- PS1 ---
