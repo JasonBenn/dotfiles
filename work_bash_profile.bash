@@ -1,9 +1,7 @@
 # --- PATH ---
-
-PATH=$PATH:/usr/local/mysql/bin           # mysql
-PATH=$PATH:/var/lib/mongodb               # mongodb
-PATH=$PATH:/Users/jasonbenn/arcanist/bin  # arcanist
-
+PATH=$PATH:/usr/local/mysql/bin           # MySQL
+PATH=$PATH:/var/lib/mongodb               # MongoDB
+PATH=$PATH:/Users/jasonbenn/arcanist/bin  # Arcanist
 
 # --- ALIASES ---
 
@@ -13,6 +11,7 @@ alias ll='ls -laF'
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/sites-enabled/web"
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.files-changed "diff-tree --no-commit-id --name-only -r"
+git config --global alias.today "log --since=midnight --author='Jason Benn' --oneline"
 
 
 # --- UTILITY FUNCTIONS ---
@@ -43,6 +42,7 @@ function cd-fixture() {
 
 function deploy() {
   tier=$1
+  git stash -u
   current_branch="$(git rev-parse --abbrev-ref HEAD)"
   git checkout develop
   git pull --rebase
@@ -87,10 +87,10 @@ function gacp {
 # --- THIRD PARTY ---
 
 source /Users/jasoncbenn/code/dotfiles/git-completion.bash
-source ~/.profile
 # For `bundle open gemname`
 EDITOR='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-
+# Enable rbenv shims and autocompletion.
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # --- APPEARANCE ---
 
