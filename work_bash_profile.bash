@@ -50,6 +50,7 @@ function deploy() {
   git reset --hard develop
   git push -f
   git checkout $current_branch
+  git stash pop
 }
 
 function ga {

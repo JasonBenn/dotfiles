@@ -6,6 +6,14 @@ Host test
   HostName all001-test.srv.clinkle.com
   User jason
 
+Host stage
+  HostName web001-stage.srv.clinkle.com
+  User jason
+
+Host prod
+  HostName web001-prod.srv.clinkle.com
+  User jason
+
 Host deployer
   Hostname deploy-network.srv.clinkle.com
   User jason
