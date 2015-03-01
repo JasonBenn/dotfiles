@@ -40,9 +40,28 @@ function cd-fixture() {
   builtin cd "/Users/jasoncbenn/code/clinkle-web/$*" && bundle exec rake fixture:start
 }
 
+function changes?() {
+  git status | grep -qF 'working directory clean' || echo "DIRTY"
+  if [ 1 = git diff --exit-code ]; then
+    echo 'sup'
+    echo $uncommitted_files
+  else
+    echo 'nope'
+  fi
+  # if  || # uncommitted files?
+  #   [ git diff --cached --exit-code == 1 ] # uncommitted staged files?
+  #   [ -n "$(git ls-files --other --exclude-standard --directory)" ]; then # is there is output when you list untracked, unignored files?
+  #   echo 'somethings different!'
+  # fi
+}
+
 function deploy() {
   tier=$1
-  git stash -u
+  stashed=false
+
+  # if git status shows anything:
+    # git stash -u
+    # stashed=true
   current_branch="$(git rev-parse --abbrev-ref HEAD)"
   git checkout develop
   git pull --rebase
@@ -85,6 +104,12 @@ function gacp {
   git push
 }
 
+function gacph { 
+  gac
+  git push heroku master
+  git push
+}
+
 # --- THIRD PARTY ---
 
 source /Users/jasoncbenn/code/dotfiles/git-completion.bash
@@ -92,6 +117,7 @@ source /Users/jasoncbenn/code/dotfiles/git-completion.bash
 EDITOR='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 # Enable rbenv shims and autocompletion.
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+PGDATA='/usr/local/var/postgres'
 
 # --- APPEARANCE ---
 
