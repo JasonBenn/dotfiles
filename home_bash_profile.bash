@@ -53,7 +53,7 @@ function gamendpf {
 # --- ALIASES ---
 
 alias ll="ls -laF"
-alias gs="git status"
+alias gs="git status -sb"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
