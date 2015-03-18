@@ -29,6 +29,13 @@ function gacp {
   git push
 }
 
+function gacph(){
+  gac
+  git push heroku master
+  say "Deploy complete"
+  git push
+}
+
 function gamend {
   ga
   echo -n 'Commit message: '
@@ -52,6 +59,8 @@ function gamendpf {
 
 # --- ALIASES ---
 
+alias draft-wach="cd ~/Dropbox/Draft && wach -o **/*.rtf, textutil -convert txt {}"
+alias draft-convert="ls ~/Dropbox/Draft/**/*.rtf | xargs -I LINE textutil -convert txt LINE"
 alias ll="ls -laF"
 alias gs="git status -sb"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
