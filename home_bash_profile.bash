@@ -68,22 +68,50 @@ alias gco="git checkout"
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.files-changed "diff-tree --no-commit-id --name-only -r"
 
+
+
 # --- PATH ---
 
-export HOMEBREW_PATH="/usr/local/bin:/usr/local/sbin"
-export PATH="~/bin:$HOMEBREW_PATH:/usr/bin:/usr/sbin:/bin:/sbin:/Users/jasonbenn/.rbenv/versions/"
-export PATH="/Users/jasonbenn/.rbenv/versions/2.0.0-p195/bin:/usr/local/share/npm/bin:/usr/local/share/npm/lib/node_modules:$PATH"
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export EDITOR='subl -w'
+# OLD PATH:
+# /Users/jasonbenn/.rbenv/shims
+# /usr/local/heroku/bin
+# /Users/jasonbenn/.rbenv/versions/2.0.0-p195/bin
+# /usr/local/share/npm/bin
+# /usr/local/share/npm/lib/node_modules
+# ~/bin
+# /usr/local/bin
+# /usr/local/sbin
+# /usr/bin
+# /usr/sbin
+# /bin
+# /sbin
+# /Users/jasonbenn/.rbenv/versions/
+
+# EXPERIMENTAL PATH:
+export PATH="/Users/jasonbenn/.rbenv/shims" # rbenv
+export PATH="$PATH:/usr/local/heroku/bin"   # heroku 
+
+# slightly reordered version of /etc/paths:
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:/usr/bin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/bin"
+export PATH="$PATH:/sbin"
+
+# MAYBE NOT NEEDED:
+# /Users/jasonbenn/.rbenv/versions/
+
+
 
 # --- THIRD PARTY ---
 
 source "/usr/local/etc/bash_completion.d/git-completion.bash"
 source "/usr/local/etc/bash_completion.d/git-prompt.sh"
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-# For `bundle open gemname`
-EDITOR='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+
+export EDITOR='subl -w'
 
 
 # --- PS1 ---
