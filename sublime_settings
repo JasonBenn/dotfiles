@@ -1,12 +1,23 @@
 {
+	"binary_file_patterns":
+	[
+		"bower_components/*"
+	],
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
+	"file_exclude_patterns":
+	[
+		".gitkeep",
+		".keep"
+	],
 	"folder_exclude_patterns":
 	[
 		".svn",
 		".git",
 		".hg",
 		"CVS",
+		"node_modules/*",
+		"tmp/*",
 		"tmp/class-*",
 		"tmp/es_*",
 		"tmp/jshinter*",
@@ -14,6 +25,7 @@
 		"tmp/static_compiler*",
 		"tmp/template_compiler*",
 		"tmp/tree_merger*",
+		"tmp/funnel-dest*",
 		"tmp/coffee_script*",
 		"tmp/concat-tmp*",
 		"tmp/export_tree*",
@@ -23,8 +35,8 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"ReactJS",
-		"Vintage"
+		"Vintage",
+		"ReactJS"
 	],
 	"tab_size": 2,
 	"translate_tabs_to_spaces": true

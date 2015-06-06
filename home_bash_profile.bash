@@ -124,6 +124,7 @@ source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export EDITOR='subl -w'
+export NODE_PATH=/usr/local/lib/node_modules
 
 
 # --- PS1 ---
