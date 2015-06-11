@@ -1,10 +1,11 @@
 {
 	"binary_file_patterns":
 	[
-		"bower_components/*"
+		"bower_components/*",
+		"node_modules/*"
 	],
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
-	"ensure_newline_at_eof_on_save": true,
+	"ensure_newline_at_eof_on_save": false,
 	"file_exclude_patterns":
 	[
 		".gitkeep",
@@ -16,7 +17,6 @@
 		".git",
 		".hg",
 		"CVS",
-		"node_modules/*",
 		"tmp/*",
 		"tmp/class-*",
 		"tmp/es_*",
