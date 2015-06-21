@@ -1,0 +1,4 @@
+Host ec2
+  HostName 52.24.222.83
+  User ubuntu
+  IdentityFile ~/.ssh/jbenn-ec2.pem
