@@ -77,8 +77,12 @@ alias ll="ls -laF"
 alias gs="git status -sb"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
+
 git config --global alias.files-changed "diff-tree --no-commit-id --name-only -r"
+PRETTY_LOG="log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.lg "${PRETTY_LOG}"
+TODAY=$(date -j -f '%a %b %d %T %Z %Y' "`date`" '+%b %d 0:00')
+git config --global alias.today "${PRETTY_LOG} --since='${TODAY}'"
 
 
 
