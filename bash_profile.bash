@@ -69,6 +69,7 @@ function gamendpf {
   git push -f
 }
 
+
 # --- ALIASES ---
 
 alias draft-wach="cd ~/Dropbox/Draft && wach -o **/*.rtf, textutil -convert txt {}"
@@ -84,26 +85,16 @@ git config --global alias.lg "${PRETTY_LOG}"
 TODAY=$(date -j -f '%a %b %d %T %Z %Y' "`date`" '+%b %d 0:00')
 git config --global alias.today "${PRETTY_LOG} --since='${TODAY}'"
 
+function report_today() {
+  # find ~/code -name .git | xargs report_today
+  # QUESTION: Why doesn't xargs work with a Bash function? What does it mean to be POSIX.2 compliant?
+  echo $1
+  cd $1 && git today && cd -
+}
 
 
 # --- PATH ---
 
-# OLD PATH:
-# /Users/jasonbenn/.rbenv/shims
-# /usr/local/heroku/bin
-# /Users/jasonbenn/.rbenv/versions/2.0.0-p195/bin
-# /usr/local/share/npm/bin
-# /usr/local/share/npm/lib/node_modules
-# ~/bin
-# /usr/local/bin
-# /usr/local/sbin
-# /usr/bin
-# /usr/sbin
-# /bin
-# /sbin
-# /Users/jasonbenn/.rbenv/versions/
-
-# EXPERIMENTAL PATH:
 export PATH="/Users/jasonbenn/.rbenv/shims" # rbenv
 export PATH="$PATH:/usr/local/heroku/bin"   # heroku 
 
@@ -114,10 +105,6 @@ export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/bin"
 export PATH="$PATH:/sbin"
-
-# MAYBE NOT NEEDED:
-# /Users/jasonbenn/.rbenv/versions/
-
 
 
 # --- THIRD PARTY ---
