@@ -97,6 +97,7 @@ function report_today() {
 
 export PATH="/Users/jasonbenn/.rbenv/shims" # rbenv
 export PATH="$PATH:/usr/local/heroku/bin"   # heroku 
+export PATH="$PATH:/usr/local/openresty/nginx/sbin"   # nginx/openresty
 
 # slightly reordered version of /etc/paths:
 export PATH="$PATH:/usr/local/bin"
