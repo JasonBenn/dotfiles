@@ -85,11 +85,11 @@ git config --global alias.lg "${PRETTY_LOG}"
 TODAY=$(date -j -f '%a %b %d %T %Z %Y' "`date`" '+%b %d 0:00')
 git config --global alias.today "${PRETTY_LOG} --since='${TODAY}'"
 
-function report_today() {
-  # find ~/code -name .git | xargs report_today
-  # QUESTION: Why doesn't xargs work with a Bash function? What does it mean to be POSIX.2 compliant?
-  echo $1
-  cd $1 && git today && cd -
+function today() {
+  # -E is to enable Posix Extended Regular Expressions
+  # -depth 2 AND -type directory AND matching that regex is true only for git directories
+  # exec replaces {} with the match data, and must end with a ;, which needs to be escaped from the shell.
+  find -E . -depth 2 -type d -regex ".*/\.git" -exec git -C {} today \;
 }
 
 
