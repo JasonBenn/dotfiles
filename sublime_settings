@@ -4,7 +4,7 @@
 		"bower_components/*",
 		"node_modules/*"
 	],
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"color_scheme": "Packages/JavaScriptNext - ES6 Syntax/Monokai Phoenix.tmTheme",
 	"ensure_newline_at_eof_on_save": false,
 	"file_exclude_patterns":
 	[
