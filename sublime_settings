@@ -36,7 +36,6 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"ReactJS",
 		"Vintage"
 	],
 	"tab_size": 2,
