@@ -1,6 +1,7 @@
 {
 	"binary_file_patterns":
 	[
+		"designs/*",
 		"bower_components/*",
 		"node_modules/*"
 	],
