@@ -97,7 +97,9 @@ function today() {
 
 # --- PATH ---
 
-export PATH="/Users/jasonbenn/.rbenv/shims" # rbenv
+export PATH=""
+export PATH="$PATH:/Users/jasonbenn/.nodenv/shims" # nodenv
+export PATH="$PATH:/Users/jasonbenn/.rbenv/shims" # rbenv
 export PATH="$PATH:/usr/local/heroku/bin"   # heroku 
 export PATH="$PATH:/usr/local/openresty/nginx/sbin"   # nginx/openresty
 
