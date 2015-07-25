@@ -132,6 +132,17 @@ export NODE_PATH=$NODE_PATH:/Users/jasonbenn/.nodenv/versions/iojs-2.3.4/lib/nod
 # Enable regexes in globs!
 shopt -s extglob
 
+# Unlimited recorded history, so you can find a command from months ago
+export HISTFILESIZE= 
+export HISTSIZE=
+
+# All previous lines matching the current line are removed from the history list before that line is saved
+export HISTCONTROL=ignoredups:erasedups
+
+# Append history as you're entering commands
+shopt -s histappend
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
 
 # --- PS1 ---
 
