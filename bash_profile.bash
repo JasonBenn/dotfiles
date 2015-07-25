@@ -85,6 +85,7 @@ PRETTY_LOG="log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cr
 git config --global alias.lg "${PRETTY_LOG}"
 TODAY=$(date -j -f '%a %b %d %T %Z %Y' "`date`" '+%b %d 0:00')
 git config --global alias.today "${PRETTY_LOG} --since='${TODAY}'"
+git config --global alias.pop "reset HEAD^"
 
 function today() {
   # -E is to enable Posix Extended Regular Expressions
