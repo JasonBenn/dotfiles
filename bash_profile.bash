@@ -115,10 +115,14 @@ export PATH="$PATH:/sbin"
 source "/usr/local/etc/bash_completion.d/git-completion.bash"
 source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # shims, autocompletion
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi # shims, autocompletion
 
 export EDITOR='subl -w'
+export NODE_REPL_HISTORY_FILE="/Users/jasonbenn/code/node_repl_history_file.txt"
 export NODE_PATH=/usr/local/lib/node_modules
+# Yeoman wants this, else: "npm global root value is not in your NODE_PATH"
+export NODE_PATH=$NODE_PATH:/Users/jasonbenn/.nodenv/versions/iojs-2.3.4/lib/node_modules
 
 
 # --- PS1 ---
