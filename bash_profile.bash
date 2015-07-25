@@ -75,6 +75,7 @@ function gamendpf {
 alias draft-wach="cd ~/Dropbox/Draft && wach -o **/*.rtf, textutil -convert txt {}"
 alias draft-convert="ls ~/Dropbox/Draft/**/*.rtf | xargs -I LINE textutil -convert txt LINE"
 alias ll="ls -laF"
+alias gist="gist -c"
 alias gs="git status -sb"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
