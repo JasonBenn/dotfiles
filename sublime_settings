@@ -4,8 +4,8 @@
 		"bower_components/*",
 		"node_modules/*"
 	],
-	"color_scheme": "Packages/JavaScriptNext - ES6 Syntax/Monokai Phoenix.tmTheme",
-	"ensure_newline_at_eof_on_save": false,
+	"color_scheme": "Packages/Babel/Monokai Phoenix.tmTheme",
+	"ensure_newline_at_eof_on_save": true,
 	"file_exclude_patterns":
 	[
 		".gitkeep",
