@@ -29,7 +29,7 @@ function gac {
   local commitmessage
   if [ "" = "$1" ]; then 
     echo -n 'Commit message: '
-    commitmessage="$(ruby -e "puts gets")"
+    read commitmessage
     git commit -m "$commitmessage"
   else
     git commit -m "$1"
