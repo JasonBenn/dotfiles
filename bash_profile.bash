@@ -127,6 +127,12 @@ export NODE_PATH=/usr/local/lib/node_modules
 export NODE_PATH=$NODE_PATH:/Users/jasonbenn/.nodenv/versions/iojs-2.3.4/lib/node_modules
 
 
+# --- BASH CONFIGURATION ---
+
+# Enable regexes in globs!
+shopt -s extglob
+
+
 # --- PS1 ---
 
 c_cyan=`tput setaf 6`
