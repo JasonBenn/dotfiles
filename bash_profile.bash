@@ -24,10 +24,10 @@ function ga {
   git add --all .
 }
 
-function gac { 
+function gac {
   ga
   local commitmessage
-  if [ "" = "$1" ]; then 
+  if [ "" = "$1" ]; then
     echo -n 'Commit message: '
     read commitmessage
     git commit -m "$commitmessage"
@@ -36,7 +36,7 @@ function gac {
   fi
 }
 
-function gacp { 
+function gacp {
   gac
   if [ $(git remote show | grep heroku) ]; then
     tput setaf 2; echo 'Deplying to Heroku...'; tput sgr0;
@@ -100,7 +100,7 @@ function today() {
 export PATH=""
 export PATH="$PATH:/Users/jasonbenn/.nodenv/shims" # nodenv
 export PATH="$PATH:/Users/jasonbenn/.rbenv/shims" # rbenv
-export PATH="$PATH:/usr/local/heroku/bin"   # heroku 
+export PATH="$PATH:/usr/local/heroku/bin"   # heroku
 export PATH="$PATH:/usr/local/openresty/nginx/sbin"   # nginx/openresty
 
 # slightly reordered version of /etc/paths:
@@ -133,7 +133,7 @@ export NODE_PATH=$NODE_PATH:/Users/jasonbenn/.nodenv/versions/iojs-2.3.4/lib/nod
 shopt -s extglob
 
 # Unlimited recorded history, so you can find a command from months ago
-export HISTFILESIZE= 
+export HISTFILESIZE=
 export HISTSIZE=
 
 # All previous lines matching the current line are removed from the history list before that line is saved
