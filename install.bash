@@ -6,4 +6,4 @@ cp ~/code/dotfiles/sublime_settings ~/Library/Application\ Support/Sublime\ Text
 cp ~/code/dotfiles/sublime_keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
 
 # install ~/.gemrc
-ln -sf /Users/jasonbenn/code/dotfiles/gemrc /Users/jasonbenn/.gemrc
+# ln -sf /Users/jasonbenn/code/dotfiles/gemrc /Users/jasonbenn/.gemrc
