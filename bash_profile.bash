@@ -70,31 +70,6 @@ function gamendpf {
 }
 
 
-# --- ALIASES ---
-
-alias draft-wach="cd ~/Dropbox/Draft && wach -o **/*.rtf, textutil -convert txt {}"
-alias draft-convert="ls ~/Dropbox/Draft/**/*.rtf | xargs -I LINE textutil -convert txt LINE"
-alias ll="ls -laF"
-alias gist="gist -c"
-alias gs="git status -sb"
-alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
-alias gco="git checkout"
-
-git config --global alias.files-changed "diff-tree --no-commit-id --name-only -r"
-PRETTY_LOG="log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
-git config --global alias.lg "${PRETTY_LOG}"
-TODAY=$(date -j -f '%a %b %d %T %Z %Y' "`date`" '+%b %d 0:00')
-git config --global alias.today "${PRETTY_LOG} --since='${TODAY}'"
-git config --global alias.pop "reset HEAD^"
-
-function today() {
-  # -E is to enable Posix Extended Regular Expressions
-  # -depth 2 AND -type directory AND matching that regex is true only for git directories
-  # exec replaces {} with the match data, and must end with a ;, which needs to be escaped from the shell.
-  find -E . -depth 2 -type d -regex ".*/\.git" -exec git -C {} today \;
-}
-
-
 # --- PATH ---
 
 export PATH=""
@@ -102,6 +77,8 @@ export PATH="$PATH:/Users/jasonbenn/.nodenv/shims" # nodenv
 export PATH="$PATH:/Users/jasonbenn/.rbenv/shims" # rbenv
 export PATH="$PATH:/usr/local/heroku/bin"   # heroku
 export PATH="$PATH:/usr/local/openresty/nginx/sbin"   # nginx/openresty
+export PATH="$PATH:/Users/jasonbenn/code/minerva-tools"   # minerva tools
+export PATH="$PATH:node_modules/.bin" # nvm (picasso prereq)
 
 # slightly reordered version of /etc/paths:
 export PATH="$PATH:/usr/local/bin"
@@ -180,3 +157,61 @@ branch_color ()
 }
 
 PS1='\W\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]: '
+
+
+# --- ALIASES ---
+
+alias draft-wach="cd ~/Dropbox/Draft && wach -o **/*.rtf, textutil -convert txt {}"
+alias draft-convert="ls ~/Dropbox/Draft/**/*.rtf | xargs -I LINE textutil -convert txt LINE"
+alias ll="ls -laF"
+alias gist="gist -c"
+alias gs="git status -sb"
+alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
+alias gco="git checkout"
+__git_complete gco _git_checkout # Enable autocomplete for gco
+
+git config --global alias.files-changed "diff-tree --no-commit-id --name-only -r"
+PRETTY_LOG="log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.lg "${PRETTY_LOG}"
+TODAY=$(date -j -f '%a %b %d %T %Z %Y' "`date`" '+%b %d 0:00')
+git config --global alias.today "${PRETTY_LOG} --since='${TODAY}'"
+git config --global alias.pop "reset HEAD^"
+
+function today() {
+  # -E is to enable Posix Extended Regular Expressions
+  # -depth 2 AND -type directory AND matching that regex is true only for git directories
+  # exec replaces {} with the match data, and must end with a ;, which needs to be escaped from the shell.
+  find -E . -depth 2 -type d -regex ".*/\.git" -exec git -C {} today \;
+}
+
+function check_for_virtual_env {
+  [ -d .git ] || git rev-parse --git-dir &> /dev/null
+
+  if [ $? == 0 ]; then
+    local ENV_NAME=`basename \`pwd\``
+
+    if [ "${VIRTUAL_ENV##*/}" != $ENV_NAME ] && [ -e $WORKON_HOME/$ENV_NAME/bin/activate ]; then
+      workon $ENV_NAME && export CD_VIRTUAL_ENV=$ENV_NAME
+    fi
+  elif [ $CD_VIRTUAL_ENV ]; then
+    deactivate && unset CD_VIRTUAL_ENV
+  fi
+}
+
+function cd {
+  builtin cd "$@" && check_for_virtual_env
+}
+
+check_for_virtual_env
+
+
+# Picasso Prequisites
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT="true"
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+export NVM_DIR="/Users/jasonbenn/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+ulimit -n 1024
