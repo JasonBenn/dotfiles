@@ -105,6 +105,11 @@ export NODE_PATH=/usr/local/lib/node_modules
 export NODE_PATH=$NODE_PATH:/Users/jasonbenn/.nodenv/versions/iojs-2.3.4/lib/node_modules
 
 
+# --- MINERVA ---
+
+complete -W "$(echo `ls ~/code/picasso/server/seminar/management/commands/ | sed 's/.py$//' | egrep -v __init__ | egrep -v pyc`;)" server/manage.py
+
+
 # --- BASH CONFIGURATION ---
 
 # Enable regexes in globs!
