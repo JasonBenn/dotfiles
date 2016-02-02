@@ -175,6 +175,9 @@ alias gs="git status -sb"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
 __git_complete gco _git_checkout # Enable autocomplete for gco
+alias gbd="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d" # delete local branches whose remotes were merged & deleted
+alias gr="git recent" # delete local branches whose remotes were merged & deleted
+
 alias gvenv="cd $VIRTUAL_ENV/lib/python2.7/site-packages/"
 
 alias flashcards="subl /Users/jasonbenn/code/flashcards"
