@@ -93,6 +93,7 @@ export PATH="$PATH:/sbin"
 
 source "/usr/local/etc/bash_completion.d/git-completion.bash"
 source "/usr/local/etc/bash_completion.d/git-prompt.sh"
+source "/usr/local/etc/bash_completion.d/ssh" # SSH completion from ~/.ssh/config
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # shims, autocompletion
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi # shims, autocompletion
