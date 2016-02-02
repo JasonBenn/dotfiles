@@ -177,6 +177,7 @@ alias gco="git checkout"
 __git_complete gco _git_checkout # Enable autocomplete for gco
 alias gvenv="cd $VIRTUAL_ENV/lib/python2.7/site-packages/"
 
+alias flashcards="subl /Users/jasonbenn/code/flashcards"
 
 git config --global alias.files-changed "diff-tree --no-commit-id --name-only -r"
 PRETTY_LOG="log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
