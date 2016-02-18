@@ -167,6 +167,7 @@ PS1='\W\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]: '
 
 # --- ALIASES ---
 
+alias egrep="egrep --color"
 alias draft-wach="cd ~/Dropbox/Draft && wach -o **/*.rtf, textutil -convert txt {}"
 alias draft-convert="ls ~/Dropbox/Draft/**/*.rtf | xargs -I LINE textutil -convert txt LINE"
 alias ll="ls -laF"
