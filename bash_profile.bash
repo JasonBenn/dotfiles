@@ -40,9 +40,7 @@ function gacp {
   gac
   if [ $(git remote show | grep heroku) ]; then
     tput setaf 2; echo 'Deplying to Heroku...'; tput sgr0;
-    if [ !$(git push heroku master) ]; then
-      say "Deploy error."
-    fi
+    $(git push heroku master)
   fi
   tput setaf 2; echo 'Pushing to Git...'; tput sgr0;
   git push
