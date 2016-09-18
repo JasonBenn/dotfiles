@@ -17,7 +17,7 @@ function grepo {
 }
 
 function gd {
-  git diff --stat --summary
+  git diff
 }
 
 function ga {
