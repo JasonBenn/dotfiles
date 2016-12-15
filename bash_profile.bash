@@ -36,6 +36,11 @@ function gac {
   fi
 }
 
+function gacwip {
+  ga
+  git commit -m "WIP" --no-verify
+}
+
 function gacp {
   gac
   if [ $(git remote show | grep heroku) ]; then
