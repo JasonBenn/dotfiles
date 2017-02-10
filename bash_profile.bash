@@ -219,8 +219,8 @@ function cd {
   builtin cd "$@" && check_for_virtual_env
 }
 
-check_for_virtual_env
-
+check_for_virtual_env > /dev/null
+eval `ssh-agent -s` > /dev/null
 
 # Picasso Prequisites
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
