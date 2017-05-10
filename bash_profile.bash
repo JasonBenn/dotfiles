@@ -232,5 +232,3 @@ source /usr/local/bin/virtualenvwrapper.sh
 export NVM_DIR="/Users/jasonbenn/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 ulimit -n 1024
-
-source ~/code/dotfiles/.secret-keys
