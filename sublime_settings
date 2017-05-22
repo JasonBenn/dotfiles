@@ -5,7 +5,7 @@
 		"bower_components/*",
 		"node_modules/*"
 	],
-	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"file_exclude_patterns":
 	[
@@ -34,7 +34,7 @@
 		"tmp/export_tree*",
 		"tmp/sass_compiler*"
 	],
-	"font_size": 14,
+	"font_size": 11,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
