@@ -1,12 +1,4 @@
-# --- UTILITY FUNCTIONS ---
-
-function draft(){
-  cp -r /Users/jasonbenn/code/bootstrap-drafter $1
-  cd $1
-  open draft.html
-  subl .
-  bundle exec guard
-}
+# --- Git Utility Functions ---
 
 function grepo {
   user_name="JasonBenn"
@@ -73,7 +65,7 @@ function gamendpf {
 }
 
 
-# --- PATH ---
+# --- Path ---
 
 export PATH=""
 export PATH="$PATH:/Users/jasonbenn/.nodenv/shims" # nodenv
@@ -84,7 +76,9 @@ export PATH="$PATH:/usr/local/openresty/nginx/sbin"   # nginx/openresty
 export PATH="$PATH:/Users/jasonbenn/code/minerva-tools"   # minerva tools
 export PATH="$PATH:node_modules/.bin" # nvm (picasso prereq)
 
-# slightly reordered version of /etc/paths:
+
+# Slightly reordered version of /etc/paths:
+
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:/usr/bin"
@@ -93,11 +87,11 @@ export PATH="$PATH:/bin"
 export PATH="$PATH:/sbin"
 
 
-# --- THIRD PARTY ---
+# --- Third Party ---
 
 source "/usr/local/etc/bash_completion.d/git-completion.bash"
 source "/usr/local/etc/bash_completion.d/git-prompt.sh"
-source "/usr/local/etc/bash_completion.d/ssh" # SSH completion from ~/.ssh/config
+source "/usr/local/etc/bash_completion.d/ssh-completion.bash" # SSH completion from ~/.ssh/config
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # shims, autocompletion
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi # shims, autocompletion
@@ -105,16 +99,24 @@ if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi # shims, autocompl
 export EDITOR='subl -w'
 export NODE_REPL_HISTORY_FILE="/Users/jasonbenn/code/node_repl_history_file.txt"
 export NODE_PATH=/usr/local/lib/node_modules
-# Yeoman wants this, else: "npm global root value is not in your NODE_PATH"
-export NODE_PATH=$NODE_PATH:/Users/jasonbenn/.nodenv/versions/iojs-2.3.4/lib/node_modules
+
+# pip bash completion start
+_pip_completion()
+{
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 ) )
+}
+complete -o default -F _pip_completion pip
+# pip bash completion end
 
 
-# --- MINERVA ---
+# --- Minerva ---
 
 complete -W "$(echo `ls ~/code/picasso/server/seminar/management/commands/ | sed 's/.py$//' | egrep -v __init__ | egrep -v pyc`;)" server/manage.py
 
 
-# --- BASH CONFIGURATION ---
+# --- Bash Configuration ---
 
 # Enable regexes in globs!
 shopt -s extglob
@@ -223,9 +225,9 @@ check_for_virtual_env > /dev/null
 eval `ssh-agent -s` > /dev/null
 
 # Picasso Prequisites
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-export VIRTUAL_ENV_DISABLE_PROMPT="true"
+# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+# export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+# export VIRTUAL_ENV_DISABLE_PROMPT="true"
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 

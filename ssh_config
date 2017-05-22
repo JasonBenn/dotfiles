@@ -1,4 +1,9 @@
-Host staging
-  HostName 54.184.252.136
-  User ubuntu
-  IdentityFile ~/.ssh/staging.pem
+Host *.production *.ops
+    StrictHostKeyChecking no
+    IdentityFile ~/.ssh/production.pem
+    User ubuntu
+
+Host *.staging *.development *.upgrade
+    StrictHostKeyChecking no
+    IdentityFile ~/.ssh/staging.pem
+    User ubuntu
