@@ -234,3 +234,4 @@ source /usr/local/bin/virtualenvwrapper.sh
 export NVM_DIR="/Users/jasonbenn/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 ulimit -n 1024
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
