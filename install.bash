@@ -1,40 +1,40 @@
-DOTFILES=$HOME/code/dotfiles
-APP_SUPPORT="$HOME/Library/Application Support"
-BASH_COMPLETION=/usr/local/etc/bash_completion.d
+# install homebrew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew tap caskroom/cask
 
+# nodenv
+brew install nodenv
 
-# silence MOTD, "Last login" message
-touch ~/.hushlogin
+# pip
+curl -O https://bootstrap.pypa.io/get-pip.py
+sudo chown -R `whoami` /Library/Python/2.7/
+python get-pip.py
+pip install --ignore-installed six
+pip install virtualenv virtualenvwrapper
 
-# use bash_profile
-ln -sf $DOTFILES/bash_profile.bash /Users/jasonbenn/.bash_profile
+# minerva-keytool
+git clone https://github.com/minervaproject/minerva-keytool
+cd minerva-keytool/
+mkvirtualenv minerva-keytool
+python setup.py sdist bdist_wheel
+brew install git-crypt lastpass-cli
+lpass login jasoncbenn@gmail.com
 
-# install sublime settings and keymap (symlinks don't work)
-cp $DOTFILES/sublime_settings "${APP_SUPPORT}/Sublime Text 3/Packages/User/Preferences.sublime-settings"
-cp $DOTFILES/sublime_keymap "${APP_SUPPORT}/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap"
-ln -sf /Users/jasonbenn/code/dotfiles/sublime-snippets/* "${APP_SUPPORT}/Sublime Text 3/Packages/User/"
+# mysql
+brew install mysql
+mysql.server start
 
-# useful applications
-ln -sf /Applications/SourceTree.app/Contents/Resources/stree /usr/local/bin/
-ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/
-# ln -sf /Users/jasonbenn/code/mop/scripts/mop /usr/local/bin/  # needs virtualenv, somehow.
+# nginx
+brew install nginx
+sudo nginx
+bash ~/code/picasso/scripts/configure-nginx
 
-# install ~/.gemrc
-# ln -sf $DOTFILES/gemrc /Users/jasonbenn/.gemrc
+# m2crypto
+brew install openssl
+export LDFLAGS="-L$(brew --prefix openssl)/lib"
+export CFLAGS="-I$(brew --prefix openssl)/include"
+export SWIG_FEATURES="-cpperraswarn -includeall -I$(brew --prefix openssl)/include"
+pip install m2crypto
 
-# install completion scripts
-ln -sf $DOTFILES/git-completion.bash /usr/local/etc/
-
-# pip.conf
-mkdir -p $HOME/.pip
-ln -sf $DOTFILES/pip.conf "${HOME}/.pip/"
-
-# bash completion scripts
-mkdir -p $BASH_COMPLETION
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o $BASH_COMPLETION/git-prompt.sh
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o $BASH_COMPLETION/git-completion.bash
-ln -sf $DOTFILES/ssh-completion.bash $BASH_COMPLETION/ssh-completion.bash
-
-# SSH stuff
-mkdir -p $HOME/.ssh
-ln -sf /$DOTFILES/ssh_config $HOME/.ssh/config
+# misc
+brew install redis awscli pv

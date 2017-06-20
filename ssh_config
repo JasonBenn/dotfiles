@@ -1,9 +1,14 @@
 Host *.production *.ops
-    StrictHostKeyChecking no
-    IdentityFile ~/.ssh/production.pem
-    User ubuntu
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/production.pem
+  User ubuntu
 
 Host *.staging *.development *.upgrade
-    StrictHostKeyChecking no
-    IdentityFile ~/.ssh/staging.pem
-    User ubuntu
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/staging.pem
+  User ubuntu
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
