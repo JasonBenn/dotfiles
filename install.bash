@@ -2,8 +2,9 @@
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
 
-# nodenv
-brew install nodenv
+# nvm
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
 
 # pip
 curl -O https://bootstrap.pypa.io/get-pip.py
