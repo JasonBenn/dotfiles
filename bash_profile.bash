@@ -68,7 +68,6 @@ function gamendpf {
 # --- Path ---
 
 export PATH=""
-export PATH="$PATH:/Users/jasonbenn/.nodenv/shims" # nodenv
 export PATH="$PATH:/Users/jasonbenn/.rbenv/shims" # rbenv
 export PATH="$PATH:/usr/local/heroku/bin"   # heroku
 export PATH="$PATH:/Users/jasonbenn/anaconda/bin" # anaconda2 4.0.0
@@ -94,7 +93,6 @@ source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 source "/usr/local/etc/bash_completion.d/ssh-completion.bash" # SSH completion from ~/.ssh/config
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # shims, autocompletion
-if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi # shims, autocompletion
 
 export EDITOR='subl -w'
 export NODE_REPL_HISTORY_FILE="/Users/jasonbenn/code/node_repl_history_file.txt"
