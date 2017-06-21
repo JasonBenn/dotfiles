@@ -12,6 +12,10 @@ function gd {
   git diff
 }
 
+function gp {
+  git pull --autostash
+}
+
 function ga {
   git add --all .
 }
