@@ -1,9 +1,9 @@
-Host *.production *.ops
+Host *.production *.vpcproduction *.ops
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/production.pem
   User ubuntu
 
-Host *.staging *.development *.upgrade
+Host *.staging *.vpcstaging *.development *.upgrade
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/staging.pem
   User ubuntu
