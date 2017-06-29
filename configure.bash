@@ -41,3 +41,6 @@ ln -sf $DOTFILES/ssh-completion.bash $BASH_COMPLETION/ssh-completion.bash
 # SSH stuff
 mkdir -p $HOME/.ssh
 ln -sf /$DOTFILES/ssh_config $HOME/.ssh/config
+
+# HTML-CSS-JS Prettify config (sublime)
+ln -sf /$DOTFILES/.jsbeautifyrc $HOME/.jsbeautifyrc
