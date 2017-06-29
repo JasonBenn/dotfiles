@@ -38,4 +38,5 @@ export SWIG_FEATURES="-cpperraswarn -includeall -I$(brew --prefix openssl)/inclu
 pip install m2crypto
 
 # misc
-brew install redis awscli pv
+brew install redis awscli pv mycli
+# Update line in /Users/jasonbenn/.virtualenvs/picasso/lib/python2.7/site-packages/django/db/backends/mysql/client.py to 'mycli' to use.
