@@ -74,8 +74,6 @@ function gamendpf {
 export PATH=""
 export PATH="$PATH:/Users/jasonbenn/.rbenv/shims" # rbenv
 export PATH="$PATH:/usr/local/heroku/bin"   # heroku
-export PATH="$PATH:/Users/jasonbenn/anaconda/bin" # anaconda2 4.0.0
-export PATH="$PATH:/usr/local/openresty/nginx/sbin"   # nginx/openresty
 export PATH="$PATH:/Users/jasonbenn/code/minerva-tools"   # minerva tools
 export PATH="$PATH:node_modules/.bin" # nvm (picasso prereq)
 
