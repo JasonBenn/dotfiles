@@ -237,4 +237,4 @@ ulimit -n 1024
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # aws setup for fast.ai
-source ~/code/fast-ai/setup/aws-alias.sh
+# source ~/code/fast-ai/setup/aws-alias.sh
