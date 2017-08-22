@@ -8,7 +8,8 @@ Host *.staging *.vpcstaging *.development *.upgrade
   IdentityFile ~/.ssh/staging.pem
   User ubuntu
 
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_rsa
+Host dl
+  Hostname 76.103.90.78
+  Port 55
+  User jbenn
+  RemoteForward 52698 127.0.0.1:52698
