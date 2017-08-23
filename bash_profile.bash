@@ -4,8 +4,11 @@ function grepo {
   user_name="JasonBenn"
   repo_name=$(pwd | xargs basename)
   curl -u "$user_name" https://api.github.com/user/repos -d "{\"name\":\"$repo_name\"}"
-  git remote add origin git@github.com:$user_name/$repo_name.git
   echo "Set up remote $repo_name!"
+  git init
+  git commit --allow-empty -m "First commit."
+  git remote add origin git@github.com:$user_name/$repo_name.git
+  git push --set-upstream origin master
 }
 
 function gd {
