@@ -98,6 +98,9 @@ source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 source "/usr/local/etc/bash_completion.d/ssh-completion.bash" # SSH completion from ~/.ssh/config
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # shims, autocompletion
+eval "$(pyenv init -)"  # pyenv autocompletion
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
 export EDITOR='subl -w'
 export NODE_REPL_HISTORY_FILE="/Users/jasonbenn/code/node_repl_history_file.txt"
