@@ -193,8 +193,6 @@ alias gr="git recent" # delete local branches whose remotes were merged & delete
 
 alias gvenv="cd $VIRTUAL_ENV/lib/python2.7/site-packages/"
 
-alias flashcards="subl /Users/jasonbenn/code/flashcards"
-
 git config --global alias.files-changed "diff-tree --no-commit-id --name-only -r"
 PRETTY_LOG="log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.lg "${PRETTY_LOG}"
@@ -244,4 +242,10 @@ ulimit -n 1024
 
 # aws setup for fast.ai
 # source ~/code/fast-ai/setup/aws-alias.sh
+
+alias ssh-tunnel-dl="ssh -N -f -L localhost:8889:localhost:8889 jbenn@76.103.90.78 -p 55; open http://localhost:8889"
+alias dlpn="cd ~/code/deep-learning-paper-notes"
+alias dli="cd ~/code/deep-learning-implementations"
+alias flashcards="subl /Users/jasonbenn/code/flashcards"
+
 export PGDATA="/usr/local/pgsql/data"
