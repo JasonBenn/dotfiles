@@ -244,3 +244,4 @@ ulimit -n 1024
 
 # aws setup for fast.ai
 # source ~/code/fast-ai/setup/aws-alias.sh
+export PGDATA="/usr/local/pgsql/data"
