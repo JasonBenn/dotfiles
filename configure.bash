@@ -9,9 +9,6 @@ touch ~/.hushlogin
 # use bash_profile
 ln -sf $DOTFILES/bash_profile.bash /Users/jasonbenn/.bash_profile
 
-# /etc/hosts
-sudo ln -sf $DOTFILES/hosts /etc/hosts
-
 # install sublime settings and keymap (symlinks don't work)
 cp $DOTFILES/sublime_settings "${APP_SUPPORT}/Sublime Text 3/Packages/User/Preferences.sublime-settings"
 cp $DOTFILES/sublime_keymap "${APP_SUPPORT}/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap"
@@ -20,7 +17,6 @@ ln -sf /Users/jasonbenn/code/dotfiles/sublime-snippets/* "${APP_SUPPORT}/Sublime
 # useful applications
 ln -sf /Applications/SourceTree.app/Contents/Resources/stree /usr/local/bin/
 ln -sf /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/
-# ln -sf /Users/jasonbenn/code/mop/scripts/mop /usr/local/bin/  # needs virtualenv, somehow.
 
 # install ~/.gemrc
 # ln -sf $DOTFILES/gemrc /Users/jasonbenn/.gemrc

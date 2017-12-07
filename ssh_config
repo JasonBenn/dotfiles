@@ -1,15 +1,5 @@
-Host *.production *.vpcproduction *.ops
-  StrictHostKeyChecking no
-  IdentityFile ~/.ssh/production.pem
-  User ubuntu
-
-Host *.staging *.vpcstaging *.development *.upgrade
-  StrictHostKeyChecking no
-  IdentityFile ~/.ssh/staging.pem
-  User ubuntu
-
 Host dl
-  Hostname 76.103.90.78
+  Hostname 67.169.68.233
   Port 55
   User jbenn
-  RemoteForward 52698 127.0.0.1:52698
+  IdentityFile ~/.ssh/id_rsa
