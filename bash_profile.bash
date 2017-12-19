@@ -113,7 +113,7 @@ __git_complete gco _git_checkout # Enable autocomplete for gco
 
 alias egrep="egrep --color"
 alias ll="ls -laF"
-alias gvenv="cd $VIRTUAL_ENV/lib/python2.7/site-packages/"
+alias gvenv="cd $VIRTUAL_ENV/lib/python3.6/site-packages/"
 
 alias lw="python ~/code/timelogger/interface.py work"
 alias lm="python ~/code/timelogger/interface.py me"
@@ -137,6 +137,7 @@ alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
 alias gbd="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d" # delete local branches whose remotes were merged & deleted
 alias gr="git recent" # delete local branches whose remotes were merged & deleted
+alias go="git-open"  # open this branch on Github
 
 PRETTY_LOG="log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.lg "${PRETTY_LOG}"
@@ -214,3 +215,4 @@ function gamendpf {
   gamend
   git push -f
 }
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"

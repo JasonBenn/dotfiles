@@ -3,3 +3,9 @@ Host dl
   Port 55
   User jbenn
   IdentityFile ~/.ssh/id_rsa
+
+Host jbenn-box
+  Hostname 34.216.171.60
+  User ec2-user
+  IdentityFile ~/.ssh/eb_jbenn
+  LocalForward 8889 localhost:8889
