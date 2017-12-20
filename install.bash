@@ -11,12 +11,17 @@ brew install pyenv pyenv-virtualenv
 $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bash_profile
 
 # postgres
-brew install postgresql
+brew install postgresql@9.6
 pg_ctl start
 
 # nginx
 brew install nginx
-sudo nginx
+brew services start nginx
 
 # misc
 brew install awscli pv
+
+# bash
+brew install bash
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+chsh -s /usr/local/bin/bash 
