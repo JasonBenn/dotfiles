@@ -200,12 +200,11 @@ function gc {
   read -e commitmessage
   git commit -m "$commitmessage"
 
-  git log --pretty='format:⚙️ %h [${productive_mins_today}]: %s' -n1 | pbcopy #cplg
+  git log --pretty="format:⚙️ %h [$(productive_mins_today)]: %s" -n1 | pbcopy #cplg
 
-  # Log a 'daily highlight' in RescueTime (Premium)
-  DATE_TODAY=$(date +"%Y-%m-%d")
   echo "Posting to RescueTime..."
-  curl --data "key=$RESCUETIME_API_KEY&highlight_date=$DATE_TODAY&description=⚙️%20[${productive_mins_today}]%20${commitmessage}" https://www.rescuetime.com/anapi/highlights_post
+  date_today=$(date +"%Y-%m-%d")
+  curl --data "key=$RESCUETIME_API_KEY&highlight_date=${date_today}&description=$(pbpaste)" https://www.rescuetime.com/anapi/highlights_post
 }
 
 function gacwip {
