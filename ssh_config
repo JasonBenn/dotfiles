@@ -3,9 +3,20 @@ Host dl
   Port 55
   User jbenn
   IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
 
-Host jbenn-box
-  Hostname 34.216.171.60
+Host jcb
+  Hostname 52.33.229.112
+  LogLevel error
   User ec2-user
-  IdentityFile ~/.ssh/eb_jbenn
-  LocalForward 8889 localhost:8889
+  IdentityFile ~/.ssh/eb_jcb
+  IdentitiesOnly yes
+  LocalForward 8888 localhost:8888
+
+Host jcb-wsgi
+  Hostname 52.33.229.112
+  LogLevel error
+  User wsgi
+  IdentityFile ~/.ssh/eb_jcb
+  IdentitiesOnly yes
+  LocalForward 8888 localhost:8888

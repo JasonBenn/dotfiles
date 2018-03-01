@@ -1,3 +1,9 @@
+# --- Secrets ---
+
+for file in $( ls $HOME/.secrets ); do 
+  export "${file}=`cat $HOME/.secrets/${file}`"
+done
+
 # --- Path ---
 
 export PATH=""
@@ -35,6 +41,11 @@ ulimit -n 1024
 
 export PGDATA="/usr/local/pgsql/data"
 
+function productive_mins_today {
+  curl -s --data "key=${RESCUETIME_API_KEY}&format=json" https://www.rescuetime.com/anapi/data \
+    | jq '.rows[] | select(.[5] == 2 or .[5] == 1) | .[1]' \
+    | paste -sd+ - | xargs -I{} expr "({})/60" | bc
+}
 
 
 # --- BASH CONFIGURATION ---
@@ -105,6 +116,7 @@ complete -o default -F _pip_completion pip
 source "/usr/local/etc/bash_completion.d/git-completion.bash"
 source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 source "/usr/local/etc/bash_completion.d/ssh-completion.bash" # SSH completion from ~/.ssh/config
+source "/usr/local/etc/bash_completion.d/django-completion.bash"
 __git_complete gco _git_checkout # Enable autocomplete for gco
 
 
@@ -127,7 +139,14 @@ alias flashcards="cd /Users/jasonbenn/code/flashcards; subl ."
 
 alias ssh-tunnel-dl="ssh -N -f -L localhost:8889:localhost:8889 jbenn@76.103.90.78 -p 55; open http://localhost:8889"
 
+function cd {
+  builtin cd $1
 
+  script_name="$HOME/.cd-scripts/`pwd | xargs basename`"
+  if [ -e ${script_name} ]; then 
+    source ${script_name}
+  fi
+}
 
 # --- GIT ALIASES ---
 
@@ -157,27 +176,36 @@ function grepo {
 }
 
 function gd {
-  git diff
+  git status -vv
+}
+
+function gpr {
+  git pull --rebase --autostash
 }
 
 function gp {
-  git pull --autostash
+  if [ $(git remote show | grep heroku) ]; then
+    $(git push heroku master)
+  fi
+
+  git push
 }
 
 function ga {
   git add --all .
 }
 
-function gac {
-  ga
-  local commitmessage
-  if [ "" = "$1" ]; then
-    echo -n 'Commit message: '
-    read commitmessage
-    git commit -m "$commitmessage"
-  else
-    git commit -m "$1"
-  fi
+function gc {
+  echo 'Commit message: '
+  read -e commitmessage
+  git commit -m "$commitmessage"
+
+  git log --pretty='format:⚙️ %h [${productive_mins_today}]: %s' -n1 | pbcopy #cplg
+
+  # Log a 'daily highlight' in RescueTime (Premium)
+  DATE_TODAY=$(date +"%Y-%m-%d")
+  echo "Posting to RescueTime..."
+  curl --data "key=$RESCUETIME_API_KEY&highlight_date=$DATE_TODAY&description=⚙️%20[${productive_mins_today}]%20${commitmessage}" https://www.rescuetime.com/anapi/highlights_post
 }
 
 function gacwip {
@@ -185,14 +213,19 @@ function gacwip {
   git commit -m "WIP" --no-verify
 }
 
+function gac {
+  ga
+  gc
+}
+
+function gcp {
+  gc
+  gp
+}
+
 function gacp {
-  gac
-  if [ $(git remote show | grep heroku) ]; then
-    tput setaf 2; echo 'Deplying to Heroku...'; tput sgr0;
-    $(git push heroku master)
-  fi
-  tput setaf 2; echo 'Pushing to Git...'; tput sgr0;
-  git push
+  ga
+  gcp
 }
 
 function gamend {
