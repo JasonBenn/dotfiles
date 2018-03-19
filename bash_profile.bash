@@ -154,7 +154,7 @@ alias gist="gist -c"
 alias gs="git status -sb"
 alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
-alias gbd="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d" # delete local branches whose remotes were merged & deleted
+# alias gbd="git branch --merged | grep -v '\*' | egrep -v 'master|development' | xargs -n 1 git branch -d" # delete local branches whose remotes were merged & deleted
 alias gr="git recent" # delete local branches whose remotes were merged & deleted
 alias go="git-open"  # open this branch on Github
 
@@ -163,6 +163,16 @@ git config --global alias.lg "${PRETTY_LOG}"
 TODAY=$(date -j -f '%a %b %d %T %Z %Y' "`date`" '+%b %d 0:00')
 git config --global alias.today "${PRETTY_LOG} --since='${TODAY}'"
 git config --global alias.pop "reset HEAD^"
+
+alias gb="git branch"
+function gbd {
+  git branch -D $1
+  git push --delete origin $1
+}
+# Not working yet...
+# complete -F __git_heads gbd
+# __git_complete gbd __git_heads
+
 
 function grepo {
   user_name="JasonBenn"
@@ -189,6 +199,12 @@ function gp {
   fi
 
   git push
+
+  git log --pretty="format:⚙️ %h [$(productive_mins_today)]: %s" -n1 | pbcopy #cplg
+
+  echo "Posting to RescueTime..."
+  date_today=$(date +"%Y-%m-%d")
+  curl --data "key=$RESCUETIME_API_KEY&highlight_date=${date_today}&description=$(pbpaste)" https://www.rescuetime.com/anapi/highlights_post
 }
 
 function ga {
@@ -199,12 +215,6 @@ function gc {
   echo 'Commit message: '
   read -e commitmessage
   git commit -m "$commitmessage"
-
-  git log --pretty="format:⚙️ %h [$(productive_mins_today)]: %s" -n1 | pbcopy #cplg
-
-  echo "Posting to RescueTime..."
-  date_today=$(date +"%Y-%m-%d")
-  curl --data "key=$RESCUETIME_API_KEY&highlight_date=${date_today}&description=$(pbpaste)" https://www.rescuetime.com/anapi/highlights_post
 }
 
 function gacwip {

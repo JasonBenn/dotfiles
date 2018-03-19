@@ -6,17 +6,21 @@ Host dl
   IdentitiesOnly yes
 
 Host jcb
-  Hostname 52.33.229.112
+  Hostname 34.210.70.78
   LogLevel error
   User ec2-user
   IdentityFile ~/.ssh/eb_jcb
   IdentitiesOnly yes
+  RemoteForward 12345 localhost:12345
   LocalForward 8888 localhost:8888
+  ExitOnForwardFailure=Yes
 
-Host jcb-wsgi
-  Hostname 52.33.229.112
+Host jason
+  Hostname 54.202.215.43
   LogLevel error
-  User wsgi
-  IdentityFile ~/.ssh/eb_jcb
+  User ec2-user
+  IdentityFile ~/.ssh/eb_jason
   IdentitiesOnly yes
-  LocalForward 8888 localhost:8888
+  RemoteForward 12346 localhost:12346
+  LocalForward 8889 localhost:8889
+  ExitOnForwardFailure=Yes
