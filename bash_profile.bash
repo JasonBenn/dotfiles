@@ -9,8 +9,7 @@ done
 export PATH=""
 export PATH="$PATH:/Users/jasonbenn/.rbenv/shims" # rbenv
 export PATH="$PATH:/usr/local/heroku/bin"   # heroku
-export PATH="$PATH:/Users/jasonbenn/code/minerva-tools"   # minerva tools
-export PATH="$PATH:node_modules/.bin" # nvm (picasso prereq)
+# export PATH="$PATH:/Users/jasonbenn/code/sourceress/web/node_modules/.bin"  # sourceress node_modules, includes webpack
 
 
 # Slightly reordered version of /etc/paths:
@@ -33,11 +32,6 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export EDITOR='subl -w'
 export NODE_REPL_HISTORY_FILE="/Users/jasonbenn/code/node_repl_history_file.txt"
 export NODE_PATH=/usr/local/lib/node_modules
-
-export NVM_DIR="/Users/jasonbenn/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-ulimit -n 1024
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PGDATA="/usr/local/pgsql/data"
 
@@ -113,10 +107,19 @@ _pip_completion()
 }
 complete -o default -F _pip_completion pip
 
+# _manage_commands_completion() {
+# ls $HOME/code/sourceress/web/main/management/commands/ | grep -v ^__ | sed s/.py//
+#   COMPREPLY=( $( compgen -W '-a -d -f -l -t -h --aoption --debug \
+#                                --file --log --test --help --' -- $cur ) );;
+# }
+# complete -F _manage_commands_completion -o default manage.py
+# complete -F _python_django_completion -o default $pythons
+# complete -F _django_completion -o default django-admin.py manage.py django-admin
+
 source "/usr/local/etc/bash_completion.d/git-completion.bash"
 source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 source "/usr/local/etc/bash_completion.d/ssh-completion.bash" # SSH completion from ~/.ssh/config
-source "/usr/local/etc/bash_completion.d/django-completion.bash"
+# source "/usr/local/etc/bash_completion.d/django-completion.bash"  # takes too long
 __git_complete gco _git_checkout # Enable autocomplete for gco
 
 
@@ -156,15 +159,17 @@ alias edit-nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias gco="git checkout"
 # alias gbd="git branch --merged | grep -v '\*' | egrep -v 'master|development' | xargs -n 1 git branch -d" # delete local branches whose remotes were merged & deleted
 alias gr="git recent" # delete local branches whose remotes were merged & deleted
-alias go="git-open"  # open this branch on Github
+alias go="git open"  # open this branch on Github
 
 PRETTY_LOG="log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.lg "${PRETTY_LOG}"
 TODAY=$(date -j -f '%a %b %d %T %Z %Y' "`date`" '+%b %d 0:00')
 git config --global alias.today "${PRETTY_LOG} --since='${TODAY}'"
 git config --global alias.pop "reset HEAD^"
+git config --global alias.s "stash"
+git config --global alias.sp "stash pop"
 
-alias gb="git branch"
+alias gb="git for-each-ref --sort='-committerdate:iso8601' --format=' %(committerdate:iso8601)%09%(refname)' refs/heads"
 function gbd {
   git branch -D $1
   git push --delete origin $1
@@ -186,7 +191,7 @@ function grepo {
 }
 
 function gd {
-  git status -vv
+  git diff --color=always | less -r
 }
 
 function gpr {
@@ -200,11 +205,16 @@ function gp {
 
   git push
 
-  git log --pretty="format:⚙️ %h [$(productive_mins_today)]: %s" -n1 | pbcopy #cplg
+  git log --pretty="format:⚙️ %h [$(productive_mins_today)]: %s" -n1 | pbcopy
 
   echo "Posting to RescueTime..."
   date_today=$(date +"%Y-%m-%d")
   curl --data "key=$RESCUETIME_API_KEY&highlight_date=${date_today}&description=$(pbpaste)" https://www.rescuetime.com/anapi/highlights_post
+}
+
+function cplg {
+  echo -e "$(git log --pretty="format:⚙️ %s" -n3)" | gtac | pbcopy
+  echo -e "$(git log --pretty="format:⚙️ %s" -n3)" | gtac
 }
 
 function ga {
@@ -258,3 +268,39 @@ function gamendpf {
   git push -f
 }
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+
+gsync () {
+  # Syncs a local directory to a remote directory, then watches for changes
+  # Usage:
+  #
+  #   $ gsync 35.203.128.177 ${HOME}/Workspace/unrestricted-advex
+  #
+  ip=${1:-${default_ip}}
+  local_dir=${2:-"${HOME}/Workspace/unrestricted-advex"}
+  remote_dir=${3:-"/home/tom/code/attn"}
+  echo $remote_dir
+  echo $local_dir
+  echo $ip
+  username='jasonbenn'
+
+  _gsync_once () {
+    # Rsync all files using gzip compression and not following links
+    rsync -azP --no-links \
+      -e "ssh -i $HOME/.ssh/google_compute_engine -oStrictHostKeyChecking=no" \
+      --exclude 'tmp/' \
+      --exclude 'data/' \
+      $local_dir $username@$ip:$remote_dir
+  }
+
+  # Sync once, then sync every time there is a change in local_dir
+  _gsync_once
+  fswatch -o $local_dir | while read f; do
+      _gsync_once
+   done
+}
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

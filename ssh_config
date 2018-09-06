@@ -1,3 +1,8 @@
+Host *
+ AddKeysToAgent yes
+ UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa
+
 Host dl
   Hostname 67.169.68.233
   Port 55
@@ -6,21 +11,57 @@ Host dl
   IdentitiesOnly yes
 
 Host jcb
-  Hostname 34.210.70.78
+  Hostname web.jcb.ml.dev.sourceress.co
+  LogLevel error
+  User root
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+  ForwardX11 yes
+  RemoteForward 12345 localhost:12345
+  RemoteForward 23456 localhost:22
+  LocalForward 8888 localhost:8888
+
+Host jcb-nofwd
+  Hostname web.jcb.ml.dev.sourceress.co
+  LogLevel error
+  User root
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+
+Host prod
+  Hostname 52.25.140.130
+  User root
+
+Host jenkins
+  Hostname jenkins.sourceress.co
   LogLevel error
   User ec2-user
-  IdentityFile ~/.ssh/eb_jcb
+  IdentityFile ~/.ssh/jenkins
   IdentitiesOnly yes
   RemoteForward 12345 localhost:12345
   LocalForward 8888 localhost:8888
   ExitOnForwardFailure=Yes
 
-Host jason
-  Hostname 54.202.215.43
-  LogLevel error
-  User ec2-user
-  IdentityFile ~/.ssh/eb_jason
-  IdentitiesOnly yes
-  RemoteForward 12346 localhost:12346
-  LocalForward 8889 localhost:8889
-  ExitOnForwardFailure=Yes
+Host learnbox
+  Hostname 35.203.163.163
+  User jasonbenn
+  IdentityFile ~/.ssh/google_compute_engine
+  StrictHostKeyChecking no
+
+Host learnbox-p100
+  Hostname 35.227.189.236
+  User jasonbenn
+  IdentityFile ~/.ssh/google_compute_engine
+  StrictHostKeyChecking no
+
+Host ml-box
+  Hostname ml.benjmann.net
+  User jason
+
+Host tina
+  Hostname 54.203.78.248
+  User root
+
+Host bawr
+  Hostname 54.69.188.43
+  User root
