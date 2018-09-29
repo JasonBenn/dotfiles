@@ -35,10 +35,13 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 export PGDATA="/usr/local/pgsql/data"
 
-function productive_mins_today {
-  curl -s --data "key=${RESCUETIME_API_KEY}&format=json" https://www.rescuetime.com/anapi/data \
-    | jq '.rows[] | select(.[5] == 2 or .[5] == 1) | .[1]' \
-    | paste -sd+ - | xargs -I{} expr "({})/60" | bc
+function very_productive_mins_today {
+  total_mins=$(curl -s --data "key=${RESCUETIME_API_KEY}&format=json" https://www.rescuetime.com/anapi/data \
+    | jq '.rows[] | select(.[5] == 2) | .[1]' \
+    | paste -sd+ - | xargs -I{} expr "({})/60" | bc)
+  hours=$(expr "${total_mins}/60" | bc)
+  mins=$(expr "${total_mins}%60" | bc)
+  echo "${hours}:${mins}"
 }
 
 
@@ -205,7 +208,7 @@ function gp {
 
   git push
 
-  git log --pretty="format:⚙️ %h [$(productive_mins_today)]: %s" -n1 | pbcopy
+  git log --pretty="format:⚙️ %h [$(very_productive_mins_today)]: %s" -n1 | pbcopy
 
   echo "Posting to RescueTime..."
   date_today=$(date +"%Y-%m-%d")
@@ -213,8 +216,8 @@ function gp {
 }
 
 function cplg {
-  echo -e "$(git log --pretty="format:⚙️ %s" -n3)" | gtac | pbcopy
-  echo -e "$(git log --pretty="format:⚙️ %s" -n3)" | gtac
+  echo -e "$(git log --pretty="format:⚙️ %s" -n${1})" | gtac | pbcopy
+  echo -e "$(git log --pretty="format:⚙️ %s" -n${1})" | gtac
 }
 
 function ga {

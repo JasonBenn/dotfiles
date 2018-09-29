@@ -32,6 +32,10 @@ Host prod
   Hostname 52.25.140.130
   User root
 
+Host staging_2
+  Hostname 52.26.80.0
+  User root
+
 Host jenkins
   Hostname jenkins.sourceress.co
   LogLevel error
@@ -64,4 +68,8 @@ Host tina
 
 Host bawr
   Hostname 54.69.188.43
+  User root
+
+Host terraform_state
+  Hostname 52.88.252.99
   User root
