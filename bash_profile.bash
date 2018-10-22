@@ -41,7 +41,7 @@ function very_productive_mins_today {
     | paste -sd+ - | xargs -I{} expr "({})/60" | bc)
   hours=$(expr "${total_mins}/60" | bc)
   mins=$(expr "${total_mins}%60" | bc)
-  echo "${hours}:${mins}"
+  printf "${hours}:%02d\n" ${mins}
 }
 
 
