@@ -102,6 +102,8 @@ PS1='\W\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]: '
 
 # --- COMPLETION ---
 
+complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
+
 _pip_completion()
 {
     COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
@@ -208,11 +210,10 @@ function gp {
 
   git push
 
-  git log --pretty="format:⚙️ %h [$(very_productive_mins_today)]: %s" -n1 | pbcopy
-
-  echo "Posting to RescueTime..."
-  date_today=$(date +"%Y-%m-%d")
-  curl --data "key=$RESCUETIME_API_KEY&highlight_date=${date_today}&description=$(pbpaste)" https://www.rescuetime.com/anapi/highlights_post
+  echo git log --pretty="format:⚙️ %h [$(very_productive_mins_today)]: %s" -n1
+  # echo "Posting to RescueTime..."
+  # date_today=$(date +"%Y-%m-%d")
+  # curl --data "key=$RESCUETIME_API_KEY&highlight_date=${date_today}&description=$(pbpaste)" https://www.rescuetime.com/anapi/highlights_post
 }
 
 function cplg {
@@ -307,3 +308,16 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jasonbenn/code/google-cloud-sdk/path.bash.inc' ]; then . '/Users/jasonbenn/code/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jasonbenn/code/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/jasonbenn/code/google-cloud-sdk/completion.bash.inc'; fi
+
+export PATH="/usr/local/override-bin:$PATH"
+
+alias clippings_to_roam="PYENV_VERSION=clippings_to_roam python ~/code/clippings_to_roam/parse.py"

@@ -1,39 +1,43 @@
 Host *
- AddKeysToAgent yes
- UseKeychain yes
  IdentityFile ~/.ssh/id_rsa
+ UserKnownHostsFile ~/.ssh/known_hosts
 
 Host dl
   Hostname 67.169.68.233
   Port 55
   User jbenn
-  IdentityFile ~/.ssh/id_rsa
   IdentitiesOnly yes
-
-Host jcb
-  Hostname web.jcb.ml.dev.sourceress.co
-  LogLevel error
-  User root
-  IdentityFile ~/.ssh/id_rsa
-  IdentitiesOnly yes
-  ForwardX11 yes
-  RemoteForward 12345 localhost:12345
-  RemoteForward 23456 localhost:22
-  LocalForward 8888 localhost:8888
 
 Host jcb-nofwd
   Hostname web.jcb.ml.dev.sourceress.co
   LogLevel error
   User root
-  IdentityFile ~/.ssh/id_rsa
   IdentitiesOnly yes
 
 Host prod
   Hostname 52.25.140.130
+  LocalForward 8888 localhost:8888
   User root
 
-Host staging_2
+Host prod_worker_0
+  Hostname 52.26.183.176
+  User root
+
+Host prod_worker_1
+  Hostname 18.237.37.237
+  User root
+
+Host staging
   Hostname 52.26.80.0
+  LocalForward 8888 localhost:8888
+  User root
+
+Host staging_worker_0
+  Hostname 35.160.84.184
+  User root
+
+Host staging_worker_1
+  Hostname 54.202.110.213
   User root
 
 Host jenkins
@@ -52,18 +56,25 @@ Host learnbox
   IdentityFile ~/.ssh/google_compute_engine
   StrictHostKeyChecking no
 
-Host learnbox-p100
-  Hostname 35.227.189.236
-  User jasonbenn
-  IdentityFile ~/.ssh/google_compute_engine
-  StrictHostKeyChecking no
-
 Host ml-box
-  Hostname ml.benjmann.net
+  Hostname 192.168.86.176
   User jason
+  StrictHostKeyChecking no
+  RemoteForward 8000 localhost:8000
+  RemoteForward 5432 localhost:5432
+  LocalForward 8001 localhost:8001
+  LocalForward 8889 localhost:8889
+  RemoteForward 12345 localhost:12345
+  LocalForward 5555 localhost:5555
+  LocalForward 5556 localhost:5556
+  LogLevel QUIET
 
 Host tina
   Hostname 54.203.78.248
+  User root
+
+Host hristijan
+  Hostname 34.215.124.196
   User root
 
 Host bawr
@@ -73,3 +84,70 @@ Host bawr
 Host terraform_state
   Hostname 52.88.252.99
   User root
+
+Host pi_common_room
+  Hostname 192.168.86.24
+  User pi
+
+Host pi_common_room_external
+  Hostname 24.130.32.219
+  Port 53835
+  User pi
+
+Host pi_study
+  Hostname 192.168.86.103
+  User pi
+
+Host pi_study_external
+  Hostname 24.130.32.219
+  Port 53836
+  User pi
+
+Host pi_middle_kitchen
+  Hostname 192.168.87.121
+  User pi
+
+Host pi_middle_kitchen_external
+  Hostname 24.130.32.219
+  Port 53837
+  User pi
+
+Host pi_jasons_room
+  Hostname 192.168.86.31
+  User pi
+
+Host pi_jasons_room_external
+  Hostname 24.130.32.219
+  Port 53838
+  User pi
+
+Host pi_workshop
+  Hostname 192.168.86.250
+  User pi
+
+Host pi_workshop_external
+  Hostname 24.130.32.219
+  Port 53839
+  User pi
+
+Host pi_roof
+  Hostname 192.168.86.51
+  User pi
+
+Host pi_roof_external
+  Hostname 24.130.32.219
+  Port 53840
+  User pi
+
+Host pi_backyard
+  Hostname 192.168.86.59
+  User pi
+
+Host pi_backyard_external
+  Hostname 24.130.32.219
+  Port 53841
+  User pi
+
+Host flock
+  Hostname 157.245.238.241
+  User flock
